@@ -14,9 +14,9 @@ export function ExpenseFilterBar({filters , onChange} : ExpenseFilterBarProps) {
 
     return (
         <div className="filters">
-            <label htmlFor="{`${id}-priority}">Priority</label>
+            <label htmlFor={`${id}-priority`}>Priority</label>
             <select
-            id="{`${id}-priority"
+            id={`${id}-priority`}
             value={filters.priority}
             onChange={(e) => {
                 const value = e.target.value

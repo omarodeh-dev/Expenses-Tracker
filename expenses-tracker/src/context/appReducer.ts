@@ -39,6 +39,7 @@ export function appReducer(state: AppState, action: Action): AppState {
             return {
                 ...state,
                 users: state.users.filter(user => user.id !== action.payload.id),
+                expenses: state.expenses.filter(expense => expense.userId !== action.payload.id),
                 selectedUserId: state.selectedUserId === action.payload.id ? null : state.selectedUserId
             };
         case "ADD_EXPENSE":

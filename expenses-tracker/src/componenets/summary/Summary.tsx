@@ -2,10 +2,8 @@ import { useState } from "react";
 import { useUserSummary } from "../../hooks/useUserSummary";
 import { FREQUENCY, type Frequency } from "../../types/types";
 import { FREQUENCY_LABELS } from "../../utils/format";
-import { PriorityBadge } from "../ui/PriorityBadge";
+import { PriorityBreakdown } from "./PriorityDetails";
 import { SalarySummary } from "./SalaryDetails";
-//import { PriorityBreakdown } from './PriorityBreakdown'
-//import { SalarySummary } from './SalarySummary
 
 export function Summary() {
     const summary = useUserSummary()

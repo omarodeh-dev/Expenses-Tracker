@@ -1,21 +1,26 @@
-export const PRIORITY = ["low", "medium", "high"] as const;
+// Ordered from most to least important, so lists and the priority sort show "high" first
+export const PRIORITY = ["high", "medium", "low"] as const;
 export type Priority = (typeof PRIORITY)[number];
 
-export const FREQUENCY = ["daily", "weekly", "monthly", "yearly"] as const;
+export const FREQUENCY = ["monthly", "yearly"] as const;
 export type Frequency = (typeof FREQUENCY)[number];
 
 export interface User {
     id:string;
     name:string;
+    // the amount as the user entered it, read it together with salaryPeriod
     salary:number;
+    salaryPeriod:Frequency;
 }
 
 export interface Expense {
     id:string;
-    name:string;
+    title:string;
     amount:number;
     priority:Priority;
     frequency:Frequency;
+    // start date in YYYY-MM-DD format
+    date:string;
     userId:string;
     category?:string;
     note?:string;
