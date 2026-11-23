@@ -40,6 +40,12 @@ export interface AppState {
 export const SORT_OPTIONS = ["default","Amount-desc","Amount-Asc","priority"] as const
 export type SortOption = (typeof SORT_OPTIONS)[number]
 
+export const USER_ACTIONS = ["select", "edit", "delete"] as const
+export type UserAction = (typeof USER_ACTIONS)[number]
+
+export const EXPENSE_ACTIONS = ["edit", "delete"] as const
+export type ExpenseAction = (typeof EXPENSE_ACTIONS)[number]
+
 export interface ExpenseFilter {
     priority: Priority | "all"
     frequency: Frequency | "all"

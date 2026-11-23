@@ -40,7 +40,7 @@ export function ExpenseForm({userId, expense, onDone}: ExpenseFormProps) {
         const newErrors: FormErrors = {}
 
         if (!title) newErrors.title = "Title is required"
-        if (amountNumber <= 0) newErrors.amount = "Amount must be greater than 0"
+        if (!amountNumber || amountNumber <= 0) newErrors.amount = "Amount must be greater than 0"
         if (!priority) newErrors.priority = "Please select a priority"
         if (!frequency) newErrors.frequency = "Please select a frequency"
         if (!date) newErrors.date = "Please select a date"

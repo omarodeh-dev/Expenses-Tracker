@@ -1,4 +1,3 @@
-import {useApp} from "../../hooks/useApp";
 import type {Expense} from "../../types/types";
 import {toMonthly} from "../../utils/calculations";
 import {formatDate, formatMoney, PERIOD_UNITS} from "../../utils/format";
@@ -6,14 +5,11 @@ import {PriorityBadge} from "../ui/PriorityBadge";
 
 interface ExpenseItemProps {
     expense: Expense
-    onEdit: () => void
 }
 
-export function ExpenseItem({expense, onEdit}: ExpenseItemProps) {
-    const {dispatch} = useApp()
-
+export function ExpenseItem({expense}: ExpenseItemProps) {
     return (
-        <li className="expense-item">
+        <li className="expense-item" data-id={expense.id}>
             <div className="expense-details">
                 <div className="expense-title">
                     <strong>{expense.title}</strong>
@@ -35,14 +31,8 @@ export function ExpenseItem({expense, onEdit}: ExpenseItemProps) {
             </div>
 
             <div className="actions">
-                <button type="button" onClick={onEdit}>Edit</button>
-                <button
-                    type="button"
-                    className="btn-danger"
-                    onClick={() => dispatch({type: "DELETE_EXPENSE", payload: {id: expense.id}})}
-                >
-                    Delete
-                </button>
+                <button type="button" data-action="edit">Edit</button>
+                <button type="button" data-action="delete" className="btn-danger">Delete</button>
             </div>
         </li>
     )
