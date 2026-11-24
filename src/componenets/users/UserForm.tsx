@@ -28,9 +28,13 @@ export function UserForm({user, onDone}: UserFormProps) {
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
-        
+        const trimmedName = name.trim();
         const salaryNumber = Number(salary);
         const newErrors: {name?: string; salary?: string} = {};
+
+        if (!trimmedName) {
+            newErrors.name = "Name is required";
+        }
 
         if (salaryNumber <= 0) {
             newErrors.salary = "Salary must be greater than 0";
@@ -41,7 +45,7 @@ export function UserForm({user, onDone}: UserFormProps) {
             return;
         }
 
-        const fields = {name, salary: salaryNumber, salaryPeriod};
+        const fields = {name: trimmedName, salary: salaryNumber, salaryPeriod};
 
         if (user) {
             dispatch({type: "UPDATE_USER", payload: {...fields, id: user.id}});
@@ -61,7 +65,7 @@ export function UserForm({user, onDone}: UserFormProps) {
             <input
                 id={nameId}
                 type="text"
-                value={name.trim()}
+                value={name}
                 onChange={(e) => setName(e.target.value)}
             />
             {errors.name && <p className="error">{errors.name}</p>}

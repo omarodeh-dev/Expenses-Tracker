@@ -36,10 +36,13 @@ export function ExpenseForm({userId, expense, onDone}: ExpenseFormProps) {
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault()
 
+        const trimmedTitle = title.trim()
+        const trimmedCategory = category.trim()
+        const trimmedNote = note.trim()
         const amountNumber = Number(amount)
         const newErrors: FormErrors = {}
 
-        if (!title) newErrors.title = "Title is required"
+        if (!trimmedTitle) newErrors.title = "Title is required"
         if (!amountNumber || amountNumber <= 0) newErrors.amount = "Amount must be greater than 0"
         if (!priority) newErrors.priority = "Please select a priority"
         if (!frequency) newErrors.frequency = "Please select a frequency"
@@ -51,14 +54,14 @@ export function ExpenseForm({userId, expense, onDone}: ExpenseFormProps) {
         }
 
         const fields = {
-            title,
+            title: trimmedTitle,
             amount: amountNumber,
             priority,
             frequency,
             date,
             userId,
-            category: category|| undefined,
-            note: note || undefined,
+            category: trimmedCategory || undefined,
+            note: trimmedNote || undefined,
         }
 
         if (expense) {
@@ -83,7 +86,7 @@ export function ExpenseForm({userId, expense, onDone}: ExpenseFormProps) {
             <input
                 id={`${id}-title`}
                 type="text"
-                value={title.trim()}
+                value={title}
                 onChange={(e) => setTitle(e.target.value)}
             />
             {errors.title && <p className="error">{errors.title}</p>}
@@ -146,7 +149,7 @@ export function ExpenseForm({userId, expense, onDone}: ExpenseFormProps) {
             <input
                 id={`${id}-category`}
                 type="text"
-                value={category ? category.trim() : undefined}
+                value={category}
                 onChange={(e) => setCategory(e.target.value)}
             />
 
@@ -154,7 +157,7 @@ export function ExpenseForm({userId, expense, onDone}: ExpenseFormProps) {
             <textarea
                 id={`${id}-note`}
                 rows={2}
-                value={note ? note.trim() : undefined}
+                value={note}
                 onChange={(e) => setNote(e.target.value)}
             />
 
