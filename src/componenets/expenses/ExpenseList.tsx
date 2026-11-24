@@ -13,6 +13,15 @@ export function ExpenseList({userId}: {userId: string}) {
     const {state, dispatch} = useApp()
     const [filters, setFilters] = useState<ExpenseFilter>(DEFAULT_FILTERS)
     const [editingId, setEditingId] = useState<string | null>(null)
+    const {expenses} = state
+
+    function handleDelete(id: string) {
+        const expense = expenses.find(exp => exp.id === id)
+        if (!expense) return
+        if (window.confirm(`Delete the expense "${expense.title}"?`)) {
+            dispatch({type: "DELETE_EXPENSE", payload: {id}})
+        }
+    }
 
     function handleListClick(e: MouseEvent<HTMLUListElement>) {
         const click = getDelegatedClick(e)
@@ -29,7 +38,7 @@ export function ExpenseList({userId}: {userId: string}) {
                 setEditingId(id)
                 break
             case "delete":
-                dispatch({type: "DELETE_EXPENSE", payload: {id}})
+                handleDelete(id);
                 break
         }
     }

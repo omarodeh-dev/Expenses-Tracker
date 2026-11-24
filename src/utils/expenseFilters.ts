@@ -18,9 +18,9 @@ export function applyFilters(expense : Expense[], filters : ExpenseFilter): Expe
     )
 
     switch(filters.sortBy) {
-        case "Amount-desc" :
+        case "amount-desc" :
             return filtered.toSorted((a,b) => monthlyCost(b) - monthlyCost(a))
-        case "Amount-Asc" :
+        case "amount-asc" :
             return filtered.toSorted((a,b) => monthlyCost(a) - monthlyCost(b))
         case "priority" :
             return filtered.toSorted(
