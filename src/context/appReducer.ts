@@ -7,7 +7,9 @@ export type Action =
     | { type: "DELETE_USER"; payload: {id:string} }
     | { type: "DELETE_EXPENSE"; payload: {id:string} }
     | { type: "UPDATE_USER"; payload: User }
-    | { type: "UPDATE_EXPENSE"; payload: Expense };
+    | { type: "UPDATE_EXPENSE"; payload: Expense }
+    // replaces the whole state, used when another tab changes localStorage
+    | { type: "HYDRATE"; payload: AppState };
 
 
 export const initialState: AppState = {
@@ -57,6 +59,8 @@ export function appReducer(state: AppState, action: Action): AppState {
                 ...state,
                 expenses: state.expenses.filter(expense => expense.id !== action.payload.id)
             };
+        case "HYDRATE":
+            return action.payload;
         default:
             return assignNever(action);
     }

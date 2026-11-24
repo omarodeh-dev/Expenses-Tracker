@@ -9,7 +9,7 @@ export function toMonthly(amount: number, frequency: Frequency): number {
         case "monthly":
             return amount;
         case "yearly":
-            return amount / MONTHS_IN_YEAR;
+            return Math.round(amount / MONTHS_IN_YEAR);
         default:
             throw new Error(`Unhandled frequency: ${frequency}`);
     }

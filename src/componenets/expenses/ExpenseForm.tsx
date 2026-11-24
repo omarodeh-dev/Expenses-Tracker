@@ -83,7 +83,7 @@ export function ExpenseForm({userId, expense, onDone}: ExpenseFormProps) {
             <input
                 id={`${id}-title`}
                 type="text"
-                value={title}
+                value={title.trim()}
                 onChange={(e) => setTitle(e.target.value)}
             />
             {errors.title && <p className="error">{errors.title}</p>}
@@ -146,7 +146,7 @@ export function ExpenseForm({userId, expense, onDone}: ExpenseFormProps) {
             <input
                 id={`${id}-category`}
                 type="text"
-                value={category}
+                value={category ? category.trim() : undefined}
                 onChange={(e) => setCategory(e.target.value)}
             />
 
@@ -154,7 +154,7 @@ export function ExpenseForm({userId, expense, onDone}: ExpenseFormProps) {
             <textarea
                 id={`${id}-note`}
                 rows={2}
-                value={note}
+                value={note ? note.trim() : undefined}
                 onChange={(e) => setNote(e.target.value)}
             />
 

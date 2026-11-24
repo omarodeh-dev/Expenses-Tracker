@@ -37,7 +37,7 @@ export interface AppState {
     selectedUserId: string | null;
 }
 
-export const SORT_OPTIONS = ["default","Amount-desc","Amount-Asc","priority"] as const
+export const SORT_OPTIONS = ["default","amount-desc","amount-asc","priority"] as const
 export type SortOption = (typeof SORT_OPTIONS)[number]
 
 export const USER_ACTIONS = ["select", "edit", "delete"] as const

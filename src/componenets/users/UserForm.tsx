@@ -28,6 +28,7 @@ export function UserForm({user, onDone}: UserFormProps) {
     function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
+        
         const salaryNumber = Number(salary);
         const newErrors: {name?: string; salary?: string} = {};
 
@@ -60,7 +61,7 @@ export function UserForm({user, onDone}: UserFormProps) {
             <input
                 id={nameId}
                 type="text"
-                value={name}
+                value={name.trim()}
                 onChange={(e) => setName(e.target.value)}
             />
             {errors.name && <p className="error">{errors.name}</p>}
